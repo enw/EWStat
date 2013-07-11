@@ -1,0 +1,28 @@
+{
+  "name": "EWStat",
+  "version": "0.0.1",
+  "description": "Statistics Library",
+  "main": "EWStat.js",
+  "dependencies": {},
+  "devDependencies": {
+      "jasmine-node-karma": "1.6.1"
+  },
+  "scripts": {
+    "test": "jasmine-node-karma --autotest ./spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/enw/EWStat.git"
+  },
+  "keywords": [
+    "scheme",
+    "javascript",
+    "interpreter",
+    "eval",
+    "apply"
+  ],
+  "author": "Elliot Winard <enw@caveteen.com>",
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "gitHead": "60aa71224f081ebafaf0321ec8f98b33a51486f1"
+}
