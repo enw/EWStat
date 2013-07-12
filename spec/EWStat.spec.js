@@ -39,5 +39,35 @@ describe('EWStat Suite', function () {
            expect(stat.median("b")).toBe(8);
            expect(stat.median("c")).toBe(3);
         });
+    it('measures mode correctly', 
+       function () {
+           var stat = new EWStat();
+           
+           // no samples
+           expect(stat.mode("a")).toEqual([]);
+
+           // one sample
+           stat.addSample({a:1});
+           expect(stat.mode("a")).toEqual([]);
+           
+           // one mode
+           stat.addSample({a:1});
+           expect(stat.mode("a")).toEqual([1]);
+
+           stat.addSample({a:2});
+           expect(stat.mode("a")).toEqual([1]);
+
+           // two modes
+           stat.addSample({a:2});
+           expect(stat.mode("a")).toEqual([1,2]);
+
+           stat.addSample({a:3});
+           expect(stat.mode("a")).toEqual([1,2]);
+
+           // three modes
+           stat.addSample({a:3});
+           expect(stat.mode("a")).toEqual([1,2,3]);
+           
+        });
      }
  );
