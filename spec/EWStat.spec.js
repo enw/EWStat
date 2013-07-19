@@ -69,5 +69,22 @@ describe('EWStat Suite', function () {
            expect(stat.mode("a")).toEqual([1,2,3]);
            
         });
+    it('measures standard deviation correctly', 
+       function () {
+           var stat = new EWStat();
+           stat.addSample({score:86})
+           stat.addSample({score:73})
+           stat.addSample({score:124})
+           stat.addSample({score:111})
+           stat.addSample({score:90})
+           stat.addSample({score:38})
+               //           stat.dump();
+           var roundToTenth = function (n) {
+               return Math.round(n*10)/10;
+           }
+           expect(roundToTenth(stat.standardDeviation("score"))).toEqual(27.5);
+       }
+    );
+
      }
  );

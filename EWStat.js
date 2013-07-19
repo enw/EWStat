@@ -26,6 +26,13 @@ function EWStat() {
         }
         return newlist;
     }
+    // applies fxn to list, no return value
+    // useful for side-effects
+    function forEach(list, fxn) {
+        for (var i=0;i<list.length;i++) {
+            fxn(list[i]);
+        }
+    }
 
     var samples = [], // array of samples (objects)
         fields = {}; // array of arrays of field values
@@ -51,8 +58,24 @@ function EWStat() {
         return samples;
     }; // getSamples
 
+    // count
     this.__defineGetter__("count", function() { return samples.length; });
     
+    // standard deviation
+    this.standardDeviation = function (field) {
+        var mean = this.mean(field),
+        diffSquared = function(n) {
+            return Math.pow((n-mean),2);
+        },
+        sum = 0,
+        doSum = function(sample) {
+            sum += diffSquared(sample[field]);
+        };
+        forEach(samples, doSum);
+        return Math.sqrt(sum / this.count);
+    };
+
+
     this.dump = function () {
         console.log(samples);
     };
