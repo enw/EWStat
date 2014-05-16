@@ -38,7 +38,7 @@ function EWStat() {
         fields = {}; // array of arrays of field values
 
     // helper functions
-    function isEven (num) { return num%2 === 0; }    
+    function isEven (num) { return num%2 === 0; }
     function isOdd (num) { return !isEven(num); }
 
     // sample is a javascript object w/any number of fields
@@ -58,9 +58,16 @@ function EWStat() {
         return samples;
     }; // getSamples
 
-    // count
+    // count of samples
     this.__defineGetter__("count", function() { return samples.length; });
-    
+
+    // list of fields
+    this.__defineGetter__("fieldNames", function() {
+        var fieldNames = [];
+        for (var i in fields) fieldNames.push(i);
+        return fieldNames;
+    });
+
     // standard deviation
     this.standardDeviation = function (field) {
         var mean = this.mean(field),
@@ -102,7 +109,7 @@ function EWStat() {
 
     // for quantitative values returns a list
     this.mode = function (field) {
-        // there is no mode 
+        // there is no mode
         if (!fields[field] || fields[field].length<2) return [];
 
         var fieldsOfInterest = fields[field],
@@ -124,10 +131,10 @@ function EWStat() {
             obj.count = hist[i]
             histArr.push(obj);
         }
-        
+
         // sort array
         histArr.sort(function(a,b) {return a.count - b.count });
-        
+
         var maxCount = histArr[histArr.length-1].count;
 
         var modes = map(filter(histArr, function(item) {
@@ -146,4 +153,4 @@ function EWStat() {
 // export the interpreter
 module.exports.EWStat = EWStat;
 
- 
+
