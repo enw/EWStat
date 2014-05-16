@@ -1,7 +1,7 @@
 {
   "name": "EWStat",
-  "version": "0.0.1",
-  "description": "Statistics Library",
+  "version": "0.0.9",
+  "description": "Collect samples of a population. Get descriptive statics such as mean, median, mode, standard deviation. We'll add regression linear regression to measure the relationship between different fields.",
   "main": "EWStat.js",
   "dependencies": {},
   "devDependencies": {
